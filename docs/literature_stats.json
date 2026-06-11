@@ -1,0 +1,21 @@
+{
+  "assumption_count": 24,
+  "deep_read_rows": 230,
+  "hostile_rows": 100,
+  "matrix_rows": 1000,
+  "raw_rows": 1620,
+  "serious_skim_rows": 300,
+  "target_1000_met": true,
+  "top_titles": [
+    "Multifunctional Tactile Feedbacks Towards Compliant Robot Manipulations via 3D-Shaped Electronic Skin",
+    "Toward a New Generation of Electrically Controllable Hygromorphic Soft Actuators",
+    "A robust tactile sensor matrix for intelligent grasping of objects using robotic grippers",
+    "A review of adaptive intelligence in tactile sensing robotic hands for human centered dexterous control",
+    "Multi-Modal Sensor for Fingertips of Anthropomorphic Grippers",
+    "MagicGripper: A Mini-MagicTac Integrated Gripper Enabling Multimodal Perception in Contact-Rich Manipulation",
+    "Development of Intelligent Robot Hand Using Proximity, Contact and Slip Sensing",
+    "Implementing tactile behaviors using FingerVision",
+    "Soft-smart robotic end effectors with sensing, actuation, and gripping capabilities",
+    "Experimental Evaluation of Tactile Sensors for Compliant Robotic Hands"
+  ]
+}

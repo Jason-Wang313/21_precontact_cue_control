@@ -1,0 +1,15 @@
+{
+  "ablation_path": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\results\\ablation_summary.csv",
+  "episodes": 27000,
+  "figures": {
+    "cue_ablation": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\figures\\cue_ablation.pdf",
+    "impulse_by_latency": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\figures\\impulse_by_latency.pdf",
+    "safe_success_by_latency": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\figures\\safe_success_by_latency.pdf"
+  },
+  "normal_contact_harmful_rate": 0.595,
+  "normal_contact_safe_success": 0.405,
+  "normal_guard_harmful_rate": 0.03833,
+  "normal_guard_safe_success": 0.96167,
+  "normal_posterior_safe_success": 0.96167,
+  "summary_path": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\results\\summary.csv"
+}

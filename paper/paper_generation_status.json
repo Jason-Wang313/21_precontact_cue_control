@@ -1,0 +1,12 @@
+{
+  "main_tex": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\main.tex",
+  "reference_count": 46,
+  "references_bib": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\references.bib",
+  "template_status": {
+    "files": [
+      "iclr2026_conference.sty",
+      "iclr2026_conference.bst"
+    ],
+    "status": "already_present"
+  }
+}
