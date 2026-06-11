@@ -1,8 +1,8 @@
 # Child Status
 
-- Stage: final audit generated
+- Stage: complete
 - Last update: 2026-06-11
-- Current focus: committing and pushing final audit/status
+- Current focus: complete; final sanity check passed
 - Commands run:
   - wrote `plan.md`
   - wrote `child_status.md`
@@ -42,6 +42,10 @@
   - `python scripts\write_final_audit.py`
   - patched `scripts\write_final_audit.py` to read PowerShell JSON with `utf-8-sig`
   - `python scripts\write_final_audit.py` (refresh)
+  - `git add child_status.md scripts\write_final_audit.py docs\final_audit.md`
+  - `git commit -m "Add final audit"`
+  - `git push`
+  - final sanity checks: `git status --short`, `git log -1 --oneline`, `git remote -v`, Downloads PDF existence, final audit existence, Desktop PDF existence
 - Findings:
   - fresh git repo with only `.gitignore`, `plan.md`, `child_status.md`, and empty `docs/`
   - Python, pdflatex, bibtex, git, and GitHub CLI are available
@@ -52,6 +56,9 @@
   - direct LaTeX build succeeded; `C:\Users\wangz\Downloads\21.pdf` exists; intermediate `paper\main.pdf` removed
   - public GitHub repo created and initial commit pushed: `https://github.com/Jason-Wang313/21_precontact_cue_control`
   - final audit written at `docs\final_audit.md`; Desktop copy status is `pending orchestrator copy`
+  - final PDF remains at `C:\Users\wangz\Downloads\21.pdf`
+  - latest pushed commit before this status-only update: `3145ee4 Add final audit`
+  - working tree was clean before this final status update
 - Failures:
   - none
 - Recovery steps:
@@ -63,4 +70,4 @@
   - re-ran `python -m py_compile`; exit 0
   - ran an extra pdflatex pass to clear a label rerun warning and updated `paper\build_status.json`
 - Next:
-  - commit and push final audit/status
+  - no child-side work remains
