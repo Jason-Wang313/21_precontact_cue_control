@@ -1,8 +1,8 @@
 # Child Status
 
-- Stage: PDF build complete
+- Stage: final audit generated
 - Last update: 2026-06-11
-- Current focus: creating/pushing public GitHub repo
+- Current focus: committing and pushing final audit/status
 - Commands run:
   - wrote `plan.md`
   - wrote `child_status.md`
@@ -32,6 +32,16 @@
   - `python scripts\write_paper.py` (refresh)
   - `powershell -ExecutionPolicy Bypass -File scripts\build_paper.ps1`
   - extra `pdflatex -interaction=nonstopmode -halt-on-error main.tex` pass after label warning
+  - `gh auth status`
+  - `git remote -v`
+  - `git status --short`
+  - `git add -A`
+  - `git commit -m "Initial precontact cue control paper artifact"`
+  - `gh repo view Jason-Wang313/21_precontact_cue_control`
+  - `gh repo create 21_precontact_cue_control --public --source=. --remote=origin --push`
+  - `python scripts\write_final_audit.py`
+  - patched `scripts\write_final_audit.py` to read PowerShell JSON with `utf-8-sig`
+  - `python scripts\write_final_audit.py` (refresh)
 - Findings:
   - fresh git repo with only `.gitignore`, `plan.md`, `child_status.md`, and empty `docs/`
   - Python, pdflatex, bibtex, git, and GitHub CLI are available
@@ -40,6 +50,8 @@
   - final experiment run wrote 27000 episodes; normal-cue guard safe success 0.96167, contact-reactive 0.405, posterior-only 0.96167
   - ICLR 2026 template downloaded from official Master-Template zip; paper files generated with 46 references
   - direct LaTeX build succeeded; `C:\Users\wangz\Downloads\21.pdf` exists; intermediate `paper\main.pdf` removed
+  - public GitHub repo created and initial commit pushed: `https://github.com/Jason-Wang313/21_precontact_cue_control`
+  - final audit written at `docs\final_audit.md`; Desktop copy status is `pending orchestrator copy`
 - Failures:
   - none
 - Recovery steps:
@@ -51,4 +63,4 @@
   - re-ran `python -m py_compile`; exit 0
   - ran an extra pdflatex pass to clear a label rerun warning and updated `paper\build_status.json`
 - Next:
-  - check GitHub CLI auth and create/push `21_precontact_cue_control`
+  - commit and push final audit/status

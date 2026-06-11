@@ -17,7 +17,7 @@ DESKTOP_PDF = Path("C:/Users/wangz/OneDrive/Desktop/21.pdf")
 
 def read_json(path: Path) -> dict[str, Any]:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(path.read_text(encoding="utf-8-sig"))
     except Exception:
         return {}
 
