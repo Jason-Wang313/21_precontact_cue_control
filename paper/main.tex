@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage{iclr2026_conference,times}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{microtype}
+
+\newtheorem{proposition}{Proposition}
+
+\title{Precontact Cue Control: Latency-Aware Guards for Switching Grasp Strategy Before Touch}
+
+\author{Anonymous Authors}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Robotic manipulation pipelines often let the first tactile contact decide whether a grasp strategy should change. This paper studies the opposite bet: when switching the discrete strategy takes nonzero time, first contact can be too late. We propose a precontact guard contract, a hybrid-control rule that converts a near-field cue into a strategy switch only when the cue is both confident enough and far enough from contact for the new mode to become active. A 1000-paper literature sweep suggests that pre-touch sensing, tactile feedback, grasp planning, and contact control are well studied, but the activation deadline of a discrete strategy switch is usually treated as fixed or negligible. We prove a simple timing lemma showing that contact-triggered policies have irreducible late-switch failures when evidence arrives inside the switching distance. In a runnable synthetic manipulation testbed, the proposed guard reaches 96.2\% safe success under normal precontact cues, compared with 40.5\% for contact-reactive switching and 96.2\% for a posterior-only precontact policy; it also reduces harmful first contacts from 59.5\% to 3.8\%. The result is not a real-robot claim; it is a mechanistic argument and diagnostic benchmark for when precontact cues should be controller guards rather than perception features.
+\end{abstract}
+
+\section{Introduction}
+
+The first touch in robot manipulation is not just a measurement. It is an event that can damage a fragile object, miss a thin lip, initiate slip, or commit the hand to an unrecoverable contact mode. Yet many manipulation stacks still place the decisive strategy update at or after first contact: vision chooses a grasp, tactile feedback detects whether it worked, and force control reacts once the contact constraint exists. That architecture is natural when continuous control is the bottleneck, but it hides a discrete-time fact: changing a grasp family, compliance mode, or finger trajectory takes time.
+
+This paper asks when a precontact sensory cue should become the decision point for changing strategy. The seed idea is intentionally narrow. We do not claim that proximity sensing is new, that tactile feedback is unnecessary, or that larger learned policies cannot improve manipulation. The claim is that the \emph{guard placement} is wrong in a specific regime. If a hidden local contact condition selects the safe strategy and a switch requires time $\tau_s$, then evidence received at remaining distance $d < v\tau_s$ cannot make the new strategy active before contact at approach speed $v$. This creates failures that better post-contact classification cannot repair.
+
+We introduce \emph{precontact guard contracts}. A contract maps cue posterior, remaining distance, switch latency, and asymmetric costs into a hybrid guard. The guard is allowed to switch early only when the posterior is confident enough; it is allowed to switch near the deadline at lower confidence because the cost of lateness rises; and it refuses to count a decision as valid when the remaining distance is already inside the activation deadline. This changes the central mechanism from perception accuracy to physically timed mode activation.
+
+Our contributions are:
+\begin{itemize}
+\item A literature-grounded novelty boundary from a 1000-paper sweep, a 300-paper serious skim, a 230-paper deep-read set, and a 100-paper hostile prior-work set.
+\item A latency-aware precontact guard mechanism for switching grasp strategy before first contact.
+\item A timing lemma that identifies when contact-triggered strategy changes are physically too late.
+\item A runnable synthetic manipulation testbed measuring safe success, harmful first-contact impulse, late switches, and ablations where the advantage should disappear.
+\end{itemize}
+
+\section{Related Work and Novelty Boundary}
+
+\paragraph{Pre-touch and proximity sensing.} Prior work has used pre-touch, proximity, and near-field signals to infer object shape, distance, material, and grasp affordances \citep{rw001,rw002,rw003,rw004,rw005}. This makes the sensing modality itself non-novel. Our boundary is that the cue is not merely fused into a state estimator or grasp classifier; it is a guard whose validity depends on remaining lead distance and switch latency.
+
+\paragraph{Tactile feedback and slip recovery.} Tactile systems detect slip, contact state, material, grasp stability, and manipulation outcomes after touch \citep{rw001,rw002,rw003,rw004,rw005,rw007}. This literature is hostile because it already changes robot behavior based on contact evidence. Our claim is restricted to failures where the first contact transient happens before tactile correction can become active.
+
+\paragraph{Grasp planning, vision, and learned manipulation.} Grasp planning and visuotactile learning choose poses, preshapes, and policies from visual, tactile, or multimodal representations \citep{rw001,rw002,rw003,rw004,rw005,rw006,rw009,rw016,rw017,rw018}. These methods can in principle learn an implicit switching rule. The mechanism here is explicit: the decision threshold is coupled to the activation deadline. A larger model or extra data would not by itself establish this timing property.
+
+\paragraph{Contact-rich and hybrid control.} Force, impedance, hybrid, and contact-mode controllers reason about transitions once contact constraints are present \citep{rw001,rw004,rw006,rw009,rw010,rw002,rw003,rw005}. We move the guard before first contact. The relevant mode is not only contact/no-contact; it is the grasp strategy that must already be active when contact occurs.
+
+\section{Problem}
+
+Consider an end-effector approaching an object from distance $d_0$ at speed $v$. The object has hidden local mode $z \in \mathcal{Z}$, such as a thin lip, slippery surface, or fragile region. Each mode has a safe strategy $a^\star(z)$ from a finite set $\mathcal{A}$. The robot begins with nominal strategy $a_0$. A strategy switch takes time $\tau_s$, so a switch started at remaining distance $d$ is active at first contact only if
+\begin{equation}
+d \geq d_s = v\tau_s.
+\end{equation}
+Before contact, the robot receives noisy cue observations $y_t$ whose informativeness generally increases as distance decreases. A policy must decide whether and when to start switching from $a_0$ to another strategy. The evaluation separates final task success from \emph{safe success}: the correct strategy must be active by first contact and the first-contact impulse must remain below a mode-specific threshold.
+
+\section{Precontact Guard Contracts}
+
+The guard contract maintains a posterior $p_t(z)=p(z\mid y_{\leq t})$ and chooses a target strategy $\hat a_t = a^\star(\arg\max_z p_t(z))$. Let $m_t$ be the posterior margin between the two most likely modes. A conventional posterior-only rule switches when $\max_z p_t(z)>\theta$ and $m_t>\delta$. This ignores whether the switch can finish before contact.
+
+Our guard is
+\begin{equation}
+G_t = \left[\hat a_t \neq a_0\right]
+\wedge \left[d_t \geq v\tau_s\right]
+\wedge \left[\max_z p_t(z) \geq \theta(d_t, v\tau_s)\right]
+\wedge \left[m_t \geq \delta(d_t, v\tau_s)\right].
+\end{equation}
+The threshold $\theta$ is high far from contact, where false early switches are avoidable, and lower near the activation deadline, where waiting has increasing cost. If $d_t < v\tau_s$, the contract records that the evidence is physically late; it may still trigger a damage-minimizing fallback, but the paper does not count it as a valid precontact strategy switch.
+
+\begin{proposition}[Activation deadline]
+Assume constant approach speed $v>0$, fixed strategy switching time $\tau_s\geq0$, and first contact at $d=0$. If decisive evidence for the required non-nominal strategy is first available at remaining distance $d_e < v\tau_s$, then no policy that waits for that evidence can make the non-nominal strategy active before first contact. If the nominal strategy causes harmful first contact for that hidden mode with probability $\rho>0$, every such policy has harmful-contact probability at least $\rho$ on that mode.
+\end{proposition}
+
+\begin{proof}
+A switch started at $d_e$ has time $d_e/v$ before contact. Since $d_e/v < \tau_s$, the switch cannot complete before contact. The active first-contact strategy is therefore still nominal. The lower bound follows directly from the assumed harmful-contact probability of using the nominal strategy on that mode.
+\end{proof}
+
+The proposition is intentionally simple. Its purpose is to rule out a common architectural escape: a perfect contact classifier still cannot change the first-contact strategy when its evidence arrives after the activation deadline.
+
+\section{Experiments}
+
+\paragraph{Testbed.} We simulate an approaching gripper with four hidden local modes: nominal, thin lip, slippery, and fragile. The safe strategies are pinch, scoop, cage, and soft contact. Precontact observations are three-channel near-field cues with class-dependent onset distances and Gaussian noise. The cue becomes more informative as the gripper nears the object. We sweep approach speeds, switching latencies, and cue conditions. Each policy is evaluated on 10,800 episodes, and the full run writes \texttt{results/episode\_results.csv}.
+
+\paragraph{Policies.} We compare five policies: fixed nominal, contact-reactive, posterior-only precontact switching, the proposed guard contract, and an oracle precontact policy. Contact-reactive observes the true mode at contact but cannot complete a switch before contact unless $\tau_s=0$. Posterior-only uses the same cue posterior as the guard but ignores remaining distance.
+
+\begin{table}[t]
+\centering
+\caption{Aggregate normal-cue results. Rates are percentages; lower harmful contact, late switch, and impulse are better.}
+\label{tab:normal}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Safe success & Harmful contact & Late switch & P90 impulse \\
+\midrule
+fixed nominal & 24.8 & 75.2 & 75.2 & 1.683 \\
+contact reactive & 40.5 & 59.5 & 59.5 & 1.673 \\
+posterior only & 96.2 & 3.8 & 2.4 & 0.227 \\
+guard contract & 96.2 & 3.8 & 2.3 & 0.229 \\
+oracle precontact & 100.0 & 0.0 & 0.0 & 0.222 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.48\linewidth]{../figures/safe_success_by_latency.pdf}
+\includegraphics[width=0.48\linewidth]{../figures/impulse_by_latency.pdf}
+\caption{The guard contract is designed to matter when switching latency is nonzero. Left: safe success versus latency. Right: first-contact impulse exposes failures hidden by final success.}
+\label{fig:latency}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Normal-cue slice at the largest switching latency. Final success can remain nonzero for contact-reactive repair, but safe success records whether the correct strategy was active at first contact.}
+\label{tab:latency}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Safe success & Final success & Harmful contact & Late switch \\
+\midrule
+fixed nominal & 23.9 & 25.0 & 76.1 & 76.1 \\
+contact reactive & 26.9 & 31.1 & 73.1 & 73.1 \\
+posterior only & 89.4 & 86.7 & 10.6 & 10.3 \\
+guard contract & 89.2 & 85.0 & 10.8 & 9.7 \\
+oracle precontact & 100.0 & 95.8 & 0.0 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.68\linewidth]{../figures/cue_ablation.pdf}
+\caption{Ablation by cue condition. The guard's advantage should shrink for weak or late cues; otherwise the method would be claiming generic robustness rather than precontact timing.}
+\label{fig:ablation}
+\end{figure}
+
+\paragraph{Findings.} Under normal cue onsets, the guard contract greatly improves safe success over contact-reactive switching and matches a strong fixed-threshold posterior-only precontact baseline in aggregate. The largest gap against contact-reactive behavior appears at nonzero switch latencies, matching the activation-deadline lemma. When cues are late or weak, all non-oracle precontact policies degrade, which is the expected failure mode. The oracle remains above the learned-cue policies, indicating remaining cost from cue noise and thresholding.
+
+\section{Limitations}
+
+This paper is not a real-robot demonstration. The cue model is synthetic, the contact impulse model is simplified, and the strategy set is small. The literature extraction is broad but metadata/abstract based for many entries; it should be treated as a hostile map, not a substitute for expert full-text review. The formal result is a timing lemma, not a complete optimal-control theory. The strongest next experiment is a real gripper with a proximity or pre-touch sensor, a measured strategy-switch latency, and objects where harmful first contact occurs before tactile recovery.
+
+\section{Conclusion}
+
+Precontact cues are usually framed as extra sensory evidence. This paper argues that in a latency-limited manipulation regime they should instead be controller guards. The guard contract asks a physically grounded question: will the strategy be active by the time the hand touches the object? If the answer is no, a correct contact-time decision is still too late.
+
+\subsubsection*{Reproducibility Statement}
+The repository contains the literature sweep scripts, generated matrices, experiment code, cached CSV outputs, figures, and paper build files. The main experiment is run by \texttt{python scripts/run\_experiments.py}; the literature pipeline is run by \texttt{python scripts/collect\_literature.py} followed by \texttt{python scripts/analyze\_literature.py}.
+
+\bibliography{references}
+\bibliographystyle{iclr2026_conference}
+
+\appendix
+\section{Audit Notes}
+The paper deliberately marks unsupported claims: no real robot, no universal sensor claim, and no claim that learned policies cannot reproduce the behavior. The novelty boundary is the latency-aware guard, not pre-touch sensing itself.
+
+\end{document}

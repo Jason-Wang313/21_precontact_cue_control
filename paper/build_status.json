@@ -1,0 +1,33 @@
+﻿{
+    "stage":  "done",
+    "downloads_pdf":  "C:\\Users\\wangz\\Downloads\\21.pdf",
+    "steps":  [
+                  {
+                      "name":  "pdflatex1",
+                      "exit_code":  0,
+                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex1.out.txt"
+                  },
+                  {
+                      "name":  "bibtex",
+                      "exit_code":  0,
+                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\bibtex.out.txt"
+                  },
+                  {
+                      "name":  "pdflatex2",
+                      "exit_code":  0,
+                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex2.out.txt"
+                  },
+                  {
+                      "name":  "pdflatex3",
+                      "exit_code":  0,
+                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex3.out.txt"
+                  },
+                  {
+                      "name":  "pdflatex4",
+                      "exit_code":  0,
+                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex4.out.txt"
+                  }
+              ],
+    "copied_to_downloads":  true,
+    "removed_intermediate_pdf":  true
+}
