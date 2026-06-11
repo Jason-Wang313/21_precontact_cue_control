@@ -19,3 +19,9 @@
 - Build copied to Downloads: True.
 - Intermediate paper PDF removed: True.
 - ICLR template source status: already_present.
+
+## Orchestrator Desktop Copy
+
+Checked: 2026-06-11 17:17:06 +01:00
+Downloads PDF: C:/Users/wangz/Downloads/21.pdf
+Result: copy script exit 0 log C:\Users\wangz\robotics_60_paper_batch\logs\desktop_copy_21_20260611_171659.log
