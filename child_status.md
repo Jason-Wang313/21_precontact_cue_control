@@ -71,3 +71,7 @@
   - ran an extra pdflatex pass to clear a label rerun warning and updated `paper\build_status.json`
 - Next:
   - no child-side work remains
+
+Exit code: 0
+End time: 2026-06-11 17:16:59 +01:00
+PDF exists: True
