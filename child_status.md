@@ -1,8 +1,8 @@
 # Child Status
 
-- Stage: complete
-- Last update: 2026-06-11
-- Current focus: complete; final sanity check passed
+- Stage: v2 submission hardening complete
+- Last update: 2026-06-13
+- Current focus: v2 posterior-threshold baseline added; canonical PDF rebuilt and copied to Downloads; local build PDF removed
 - Commands run:
   - wrote `plan.md`
   - wrote `child_status.md`
@@ -59,6 +59,12 @@
   - final PDF remains at `C:\Users\wangz\Downloads\21.pdf`
   - latest pushed commit before this status-only update: `3145ee4 Add final audit`
   - working tree was clean before this final status update
+  - v2 hardening adds `results/posterior_threshold_sweep.csv` and `results/posterior_threshold_sweep_table.tex`
+  - v2 tuned posterior-only safe success is 0.977 normal, 0.758 weak cue, and 0.438 late cue, exceeding the guard in this synthetic benchmark
+  - v2 paper claim is narrowed to the activation-deadline contract and safety accounting, not universal dominance over tuned posterior thresholds
+  - rebuilt `C:\Users\wangz\Downloads\21.pdf` size is 208,458 bytes
+  - local generated `paper\main.pdf` was removed after the Downloads copy
+  - Desktop copies checked absent during v2 hardening
 - Failures:
   - none
 - Recovery steps:

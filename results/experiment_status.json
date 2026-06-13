@@ -11,6 +11,42 @@
   "normal_guard_harmful_rate": 0.03833,
   "normal_guard_safe_success": 0.96167,
   "normal_posterior_safe_success": 0.96167,
+  "posterior_sweep_best": [
+    {
+      "condition": "late_cue",
+      "early_false_switch_rate": 0.00889,
+      "fixed_posterior_safe_success_rate": 0.40611,
+      "guard_safe_success_rate": 0.33222,
+      "harmful_contact_rate": 0.56222,
+      "late_switch_rate": 0.59,
+      "posterior_conf_threshold": 0.88,
+      "posterior_margin_threshold": 0.4,
+      "safe_success_rate": 0.43778
+    },
+    {
+      "condition": "normal",
+      "early_false_switch_rate": 0.00889,
+      "fixed_posterior_safe_success_rate": 0.96167,
+      "guard_safe_success_rate": 0.96167,
+      "harmful_contact_rate": 0.02333,
+      "late_switch_rate": 0.01667,
+      "posterior_conf_threshold": 0.96,
+      "posterior_margin_threshold": 0.24,
+      "safe_success_rate": 0.97667
+    },
+    {
+      "condition": "weak_cue",
+      "early_false_switch_rate": 0.02889,
+      "fixed_posterior_safe_success_rate": 0.72556,
+      "guard_safe_success_rate": 0.71333,
+      "harmful_contact_rate": 0.24222,
+      "late_switch_rate": 0.24111,
+      "posterior_conf_threshold": 0.88,
+      "posterior_margin_threshold": 0.24,
+      "safe_success_rate": 0.75778
+    }
+  ],
+  "posterior_sweep_path": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\results\\posterior_threshold_sweep.csv",
   "stage": "done",
   "summary_path": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\results\\summary.csv"
 }

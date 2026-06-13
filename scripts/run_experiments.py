@@ -22,6 +22,8 @@ EPISODES_PATH = RESULTS / "episode_results.csv"
 SUMMARY_PATH = RESULTS / "summary.csv"
 ABLATION_PATH = RESULTS / "ablation_summary.csv"
 STATUS_PATH = RESULTS / "experiment_status.json"
+POSTERIOR_SWEEP_PATH = RESULTS / "posterior_threshold_sweep.csv"
+POSTERIOR_SWEEP_TABLE = RESULTS / "posterior_threshold_sweep_table.tex"
 
 
 CLASSES = ["nominal", "thin_lip", "slippery", "fragile"]
@@ -138,6 +140,8 @@ def run_episode(
     condition: str,
     noise: float,
     rng: np.random.Generator,
+    posterior_conf_threshold: float = 0.92,
+    posterior_margin_threshold: float = 0.32,
 ) -> dict[str, Any]:
     cls = CLASSES[cls_idx]
     required_strategy = REQUIRED[cls]
@@ -179,7 +183,7 @@ def run_episode(
                     guard_last_target = ""
                 continue
             if policy == "posterior_only":
-                if posterior_conf >= 0.92 and posterior_margin >= 0.32:
+                if posterior_conf >= posterior_conf_threshold and posterior_margin >= posterior_margin_threshold:
                     switch_started_distance = float(d)
                     switch_target = target
                     break
@@ -298,6 +302,98 @@ def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
+def posterior_threshold_sweep(velocities: list[float], latencies: list[float], episodes_per_cell: int = 60) -> list[dict[str, Any]]:
+    rng = np.random.default_rng(2102)
+    rows: list[dict[str, Any]] = []
+    confs = [0.82, 0.88, 0.92, 0.96]
+    margins = [0.16, 0.24, 0.32, 0.40]
+    conditions = ["normal", "weak_cue", "late_cue"]
+    for condition in conditions:
+        noise = {"normal": 0.20, "weak_cue": 0.25, "late_cue": 0.20}[condition]
+        for conf in confs:
+            for margin in margins:
+                for velocity in velocities:
+                    for latency in latencies:
+                        for _ in range(episodes_per_cell):
+                            cls_idx = int(rng.integers(0, len(CLASSES)))
+                            row = run_episode(
+                                "posterior_only",
+                                cls_idx,
+                                velocity,
+                                latency,
+                                condition,
+                                noise,
+                                rng,
+                                posterior_conf_threshold=conf,
+                                posterior_margin_threshold=margin,
+                            )
+                            row["posterior_conf_threshold"] = conf
+                            row["posterior_margin_threshold"] = margin
+                            rows.append(row)
+    return rows
+
+
+def write_posterior_sweep_table(sweep_rows: list[dict[str, Any]], ablation: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
+    guard = {(r["condition"], r["policy"]): r for r in ablation}
+    groups: dict[tuple[str, float, float], list[dict[str, Any]]] = {}
+    for row in sweep_rows:
+        key = (row["condition"], float(row["posterior_conf_threshold"]), float(row["posterior_margin_threshold"]))
+        groups.setdefault(key, []).append(row)
+    best_by_condition: dict[str, dict[str, Any]] = {}
+    for (condition, conf, margin), group in groups.items():
+        safe = statistics.mean(int(r["safe_success"]) for r in group)
+        harmful = statistics.mean(int(r["harmful_contact"]) for r in group)
+        late = statistics.mean(int(r["late_switch"]) for r in group)
+        early = statistics.mean(int(r["early_false_switch"]) for r in group)
+        candidate = {
+            "condition": condition,
+            "posterior_conf_threshold": conf,
+            "posterior_margin_threshold": margin,
+            "safe_success_rate": round(safe, 5),
+            "harmful_contact_rate": round(harmful, 5),
+            "late_switch_rate": round(late, 5),
+            "early_false_switch_rate": round(early, 5),
+        }
+        current = best_by_condition.get(condition)
+        if current is None or (safe, -harmful, -late) > (
+            current["safe_success_rate"],
+            -current["harmful_contact_rate"],
+            -current["late_switch_rate"],
+        ):
+            best_by_condition[condition] = candidate
+    for condition in sorted(best_by_condition):
+        best = best_by_condition[condition]
+        guard_row = guard[(condition, "guard_contract")]
+        fixed_row = guard[(condition, "posterior_only")]
+        out.append(
+            {
+                **best,
+                "guard_safe_success_rate": guard_row["safe_success_rate"],
+                "fixed_posterior_safe_success_rate": fixed_row["safe_success_rate"],
+            }
+        )
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\caption{V2 posterior-threshold sweep. The tuned posterior-only baseline searches confidence and margin thresholds over the same cue stream, without using the activation-deadline contract. This is a hostile baseline for the guard.}",
+        r"\label{tab:posterior-sweep}",
+        r"\begin{tabular}{lrrrr}",
+        r"\toprule",
+        r"Condition & Guard & Fixed posterior & Tuned posterior & Best $(p,m)$ \\",
+        r"\midrule",
+    ]
+    for row in out:
+        label = str(row["condition"]).replace("_", " ")
+        pair = f"({row['posterior_conf_threshold']:.2f},{row['posterior_margin_threshold']:.2f})"
+        lines.append(
+            f"{label} & {float(row['guard_safe_success_rate']):.3f} & {float(row['fixed_posterior_safe_success_rate']):.3f} & {row['safe_success_rate']:.3f} & {pair} \\\\"
+        )
+    lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
+    POSTERIOR_SWEEP_TABLE.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return out
+
+
 def make_figures(summary: list[dict[str, Any]], ablation: list[dict[str, Any]]) -> dict[str, str]:
     outputs: dict[str, str] = {}
     try:
@@ -390,6 +486,9 @@ def main() -> int:
     write_csv(SUMMARY_PATH, summary)
     ablation = aggregate(rows, ["condition", "policy"])
     write_csv(ABLATION_PATH, ablation)
+    sweep_rows = posterior_threshold_sweep(velocities, latencies)
+    write_csv(POSTERIOR_SWEEP_PATH, sweep_rows)
+    posterior_sweep_best = write_posterior_sweep_table(sweep_rows, ablation)
     figures = make_figures(summary, ablation)
     normal_guard = [r for r in ablation if r["condition"] == "normal" and r["policy"] == "guard_contract"][0]
     normal_contact = [r for r in ablation if r["condition"] == "normal" and r["policy"] == "contact_reactive"][0]
@@ -404,6 +503,8 @@ def main() -> int:
         "normal_posterior_safe_success": normal_post["safe_success_rate"],
         "normal_guard_harmful_rate": normal_guard["harmful_contact_rate"],
         "normal_contact_harmful_rate": normal_contact["harmful_contact_rate"],
+        "posterior_sweep_path": str(POSTERIOR_SWEEP_PATH),
+        "posterior_sweep_best": posterior_sweep_best,
     }
     (RESULTS / "experiment_summary.json").write_text(json.dumps(result, indent=2, sort_keys=True), encoding="utf-8")
     write_status("done", **result)

@@ -289,8 +289,12 @@ def make_tex(ref_groups: dict[str, list[str]], table1: str, table2: str, metrics
 \begin{{document}}
 \maketitle
 
+\noindent\textbf{{Submission-hardening version: v2.}}
+This revision adds a posterior-threshold sweep that tunes the strongest precontact posterior-only baseline over the same cue stream.
+
 \begin{{abstract}}
 Robotic manipulation pipelines often let the first tactile contact decide whether a grasp strategy should change. This paper studies the opposite bet: when switching the discrete strategy takes nonzero time, first contact can be too late. We propose a precontact guard contract, a hybrid-control rule that converts a near-field cue into a strategy switch only when the cue is both confident enough and far enough from contact for the new mode to become active. A 1000-paper literature sweep suggests that pre-touch sensing, tactile feedback, grasp planning, and contact control are well studied, but the activation deadline of a discrete strategy switch is usually treated as fixed or negligible. We prove a simple timing lemma showing that contact-triggered policies have irreducible late-switch failures when evidence arrives inside the switching distance. In a runnable synthetic manipulation testbed, the proposed guard reaches @@GUARD_SAFE@@\% safe success under normal precontact cues, compared with @@CONTACT_SAFE@@\% for contact-reactive switching and @@POSTERIOR_SAFE@@\% for a posterior-only precontact policy; it also reduces harmful first contacts from @@CONTACT_HARM@@\% to @@GUARD_HARM@@\%. The result is not a real-robot claim; it is a mechanistic argument and diagnostic benchmark for when precontact cues should be controller guards rather than perception features.
+A v2 posterior-threshold sweep further narrows the claim: a tuned posterior-only baseline reaches 97.7\% safe success under normal cues, 75.8\% under weak cues, and 43.8\% under late cues, exceeding the guard in this synthetic setup. The guard's contribution is therefore the activation-deadline contract and safety accounting, not universal dominance over tuned precontact thresholds.
 \end{{abstract}}
 
 \section{{Introduction}}
@@ -397,11 +401,15 @@ Policy & Safe success & Final success & Harmful contact & Late switch \\
 \label{{fig:ablation}}
 \end{{figure}}
 
+\input{{../results/posterior_threshold_sweep_table}}
+
 \paragraph{{Findings.}} Under normal cue onsets, the guard contract greatly improves safe success over contact-reactive switching and matches a strong fixed-threshold posterior-only precontact baseline in aggregate. The largest gap against contact-reactive behavior appears at nonzero switch latencies, matching the activation-deadline lemma. When cues are late or weak, all non-oracle precontact policies degrade, which is the expected failure mode. The oracle remains above the learned-cue policies, indicating remaining cost from cue noise and thresholding.
+
+Table~\ref{{tab:posterior-sweep}} adds the strongest v2 baseline: a sweep over posterior confidence and margin thresholds. The tuned posterior-only rule beats the guard in this synthetic setup, including 0.977 safe success under normal cues and 0.758 under weak cues. This is an important negative result for overclaim control. The supported contribution is not that this particular guard dominates every tuned precontact threshold; it is that the activation deadline is a physical validity condition and that safe-success/late-switch metrics expose failures hidden by final grasp success.
 
 \section{{Limitations}}
 
-This paper is not a real-robot demonstration. The cue model is synthetic, the contact impulse model is simplified, and the strategy set is small. The literature extraction is broad but metadata/abstract based for many entries; it should be treated as a hostile map, not a substitute for expert full-text review. The formal result is a timing lemma, not a complete optimal-control theory. The strongest next experiment is a real gripper with a proximity or pre-touch sensor, a measured strategy-switch latency, and objects where harmful first contact occurs before tactile recovery.
+This paper is not a real-robot demonstration. The cue model is synthetic, the contact impulse model is simplified, and the strategy set is small. The v2 threshold sweep shows that a tuned posterior-only precontact baseline can outperform the proposed guard on this benchmark, so the paper should not claim algorithmic dominance. The literature extraction is broad but metadata/abstract based for many entries; it should be treated as a hostile map, not a substitute for expert full-text review. The formal result is a timing lemma, not a complete optimal-control theory. The strongest next experiment is a real gripper with a proximity or pre-touch sensor, a measured strategy-switch latency, and objects where harmful first contact occurs before tactile recovery.
 
 \section{{Conclusion}}
 
