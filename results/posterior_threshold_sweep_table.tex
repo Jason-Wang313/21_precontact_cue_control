@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{V2 posterior-threshold sweep. The tuned posterior-only baseline searches confidence and margin thresholds over the same cue stream, without using the activation-deadline contract. This is a hostile baseline for the guard.}
+\label{tab:posterior-sweep}
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Guard & Fixed posterior & Tuned posterior & Best $(p,m)$ \\
+\midrule
+late cue & 0.332 & 0.406 & 0.438 & (0.88,0.40) \\
+normal & 0.962 & 0.962 & 0.977 & (0.96,0.24) \\
+weak cue & 0.713 & 0.726 & 0.758 & (0.88,0.24) \\
+\bottomrule
+\end{tabular}
+\end{table}

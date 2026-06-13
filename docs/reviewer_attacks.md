@@ -26,7 +26,7 @@ Response: the forbidden weak move is mere combination. Here the control guard ch
 
 ## Attack 7: A fixed posterior-only precontact threshold may match the guard.
 
-Response: the current synthetic evidence allows this in normal cues, so the paper must claim the activation-deadline mechanism and contact-reactive failure reduction rather than strict dominance over every precontact threshold.
+Response: v2 strengthens this attack with a posterior-threshold sweep. Tuned posterior-only reaches 0.977 safe success under normal cues, 0.758 under weak cues, and 0.438 under late cues, exceeding the guard in this synthetic setup. The paper must claim the activation-deadline contract and contact-reactive failure reduction rather than strict dominance over every precontact threshold.
 
 ## Attack 8: The hostile literature list is metadata-based.
 

@@ -7,17 +7,19 @@
 5. Closest hostile prior work: the 100-paper hostile set in `docs/hostile_prior_work.md`, especially pre-touch/proximity sensing, tactile reactive grasping, and hybrid contact-control papers that already cover the ingredients but not the latency-aware guard contract.
 6. Literature coverage: 1000 matrix entries, 300 serious-skim entries, 230 deep-read entries, 100 hostile entries; target 1000 met: True.
 7. Proof/formal-claim status: one activation-deadline proposition is proved under constant approach speed and fixed switch latency; it is a timing lemma, not a general optimal-control theorem.
-8. Strongest evidence: runnable simulation with 27000 episodes; normal-cue guard safe success 0.96167 versus contact-reactive 0.405 and posterior-only 0.96167; harmful contact guard 0.03833 versus contact-reactive 0.595.
-9. Biggest weaknesses: no real robot experiment, synthetic cue/contact model, metadata/abstract-based literature extraction for many papers, and a deliberately simple formal result.
-10. Paper-readiness judgment: workshop. The mechanism is crisp and runnable, but real hardware evidence is needed before a strong ICLR submission.
+8. Strongest evidence: runnable simulation with 27000 main episodes plus a v2 posterior-threshold sweep. Normal-cue guard safe success 0.96167 versus contact-reactive 0.405 and fixed posterior-only 0.96167; harmful contact guard 0.03833 versus contact-reactive 0.595. V2 tuned posterior-only reaches 0.977 normal, 0.758 weak cue, and 0.438 late cue safe success, exceeding the guard and narrowing the claim.
+9. Biggest weaknesses: no real robot experiment, synthetic cue/contact model, metadata/abstract-based literature extraction for many papers, a deliberately simple formal result, and v2 evidence that tuned posterior-only thresholds can outperform the proposed guard on this benchmark.
+10. Paper-readiness judgment: workshop-only / strong-revise. The timing mechanism is crisp and runnable, but real hardware evidence and stronger learned/tuned precontact baselines are needed before a strong ICLR submission.
 11. Exact Downloads PDF path: C:\Users\wangz\Downloads\21.pdf; exists: True; build stage: done; template status: already_present.
 12. GitHub URL: https://github.com/Jason-Wang313/21_precontact_cue_control.
-13. Desktop copy status: pending orchestrator copy; current Desktop path exists: False.
+13. Desktop copy status: obsolete orchestrator copy should remain absent under v2 hardening; current Desktop path exists: False.
 
 ## Build Notes
 
-- Build copied to Downloads: True.
-- Intermediate paper PDF removed: True.
+- V2 PDF build complete: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`.
+- Canonical PDF copied to `C:/Users/wangz/Downloads/21.pdf`; final size: 208,458 bytes.
+- PDF text verified for the visible v2 marker, posterior-threshold sweep, and tuned-posterior result.
+- Local generated `paper/main.pdf` removed after copying; Desktop copies absent.
 - ICLR template source status: already_present.
 
 ## Orchestrator Desktop Copy

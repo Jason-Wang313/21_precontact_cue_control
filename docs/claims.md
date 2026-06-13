@@ -13,6 +13,7 @@ Status: proved in the paper as a timing lemma under deterministic approach speed
 - The advantage disappears when the cue becomes informative only at contact or when switch latency is zero.
 - A posterior-only policy that ignores remaining distance can switch too late or too early under asymmetric costs.
 - First-contact impulse reveals failures hidden by final grasp success.
+- The v2 posterior-threshold sweep shows that tuned posterior-only precontact thresholds can beat the proposed guard in this synthetic benchmark; the supported claim is the activation-deadline contract and safety accounting, not algorithmic dominance over tuned thresholds.
 
 ## Unsupported Or Limited Claims
 
@@ -20,4 +21,5 @@ Status: proved in the paper as a timing lemma under deterministic approach speed
 - No claim is made that the synthetic cue model matches a particular sensor exactly.
 - No claim is made that precontact cues are always available or reliable.
 - No claim is made that the method outperforms large learned policies in all tasks.
+- No claim is made that this guard dominates a tuned posterior-only precontact baseline.
 - The contribution is a mechanism and diagnostic experiment, not a complete manipulation stack.
