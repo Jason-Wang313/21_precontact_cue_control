@@ -1,0 +1,14 @@
+{
+  "family_status": {
+    "A": "complete",
+    "B": "complete",
+    "C": "complete",
+    "D": "complete",
+    "E": "complete"
+  },
+  "plot_failures": 0,
+  "stage": "complete",
+  "total_cases": 26000,
+  "total_rows": 191384,
+  "updated_unix": 1781478409.442135
+}

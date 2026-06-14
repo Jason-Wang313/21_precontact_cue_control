@@ -1,25 +1,23 @@
 # Claims
 
-## Formal Claim
+## Supported Formal Claim
 
-Let a robot approach first contact at speed `v`, require a discrete strategy switch time `tau_s`, and have remaining distance `d` when the decisive evidence is obtained. If `d < v tau_s`, then no controller that waits for that evidence can make the new strategy active before first contact. When the nominal strategy causes harmful impulse or failure for a subset of hidden contact modes, a contact-triggered policy has a nonzero irreducible late-switch failure probability on those modes. A precontact guard can reduce that probability only when it obtains sufficiently reliable evidence at `d >= v tau_s`.
+If a robot approaches first contact at speed `v`, a discrete strategy switch takes `tau_s`, and decisive evidence first arrives at remaining distance `d < v tau_s`, then no policy that waits for that evidence can make the new strategy active by first contact. This is proved as an activation-deadline timing lemma under constant approach speed and fixed switch latency.
 
-Status: proved in the paper as a timing lemma under deterministic approach speed and fixed switch latency. It is not a general optimal-control theorem.
+## Supported Empirical Claims
 
-## Empirical Claims To Test
+- Contact-reactive switching is too late under nonzero latency in the synthetic benchmark: normal safe success is 0.286.
+- Strong posterior baselines are competitive: fixed posterior reaches 0.814 normal safe success.
+- The calibrated deadline guard is competitive in normal cues, also 0.814 safe success, with lower expected cost and fewer deadline violations than fixed posterior.
+- In the high-latency normal slice, calibrated deadline guard reaches 0.542 safe success versus 0.500 for fixed posterior.
+- In cost-asymmetry sweeps, calibrated deadline guard reaches 1.333 mean cost versus 1.550 for fixed posterior.
+- Under onset-late shift, calibrated deadline guard reaches 0.512 safe success versus 0.292 for source-tuned posterior.
+- Negative controls behave correctly: random cues and evidence-at-contact prevent useful precontact gains; zero latency removes deadline violations.
 
-- A latency-aware precontact guard reduces late-switch failures relative to fixed and contact-reactive policies when cue lead distance is positive.
-- The advantage increases with switch latency and approach speed.
-- The advantage disappears when the cue becomes informative only at contact or when switch latency is zero.
-- A posterior-only policy that ignores remaining distance can switch too late or too early under asymmetric costs.
-- First-contact impulse reveals failures hidden by final grasp success.
-- The v2 posterior-threshold sweep shows that tuned posterior-only precontact thresholds can beat the proposed guard in this synthetic benchmark; the supported claim is the activation-deadline contract and safety accounting, not algorithmic dominance over tuned thresholds.
+## Boundary and Negative Claims
 
-## Unsupported Or Limited Claims
-
-- No real robot experiments are claimed.
-- No claim is made that the synthetic cue model matches a particular sensor exactly.
-- No claim is made that precontact cues are always available or reliable.
-- No claim is made that the method outperforms large learned policies in all tasks.
-- No claim is made that this guard dominates a tuned posterior-only precontact baseline.
-- The contribution is a mechanism and diagnostic experiment, not a complete manipulation stack.
+- Tuned posterior thresholds remain strong and win in some weak/early cue regimes.
+- The risk guard extension underperforms because it over-switches on ambiguous cues.
+- The paper does not claim real-robot validation.
+- The paper does not claim universal dominance over tuned classifiers or learned policies.
+- The contribution is a timing contract, calibrated deadline guard, and diagnostic benchmark, not a complete manipulation stack.

@@ -24,9 +24,9 @@ Response: the guard includes a posterior margin and defers when evidence is weak
 
 Response: the forbidden weak move is mere combination. Here the control guard changes its validity condition using remaining distance and switch latency.
 
-## Attack 7: A fixed posterior-only precontact threshold may match the guard.
+## Attack 7: A fixed or tuned posterior-only precontact threshold may match the guard.
 
-Response: v2 strengthens this attack with a posterior-threshold sweep. Tuned posterior-only reaches 0.977 safe success under normal cues, 0.758 under weak cues, and 0.438 under late cues, exceeding the guard in this synthetic setup. The paper must claim the activation-deadline contract and contact-reactive failure reduction rather than strict dominance over every precontact threshold.
+Response: v3 keeps this attack alive rather than hiding it. Fixed posterior reaches 0.814 normal safe success, matching the calibrated deadline guard after rounding, and tuned posterior wins in some weak/late cue regimes. The guard's positive evidence is narrower: high-latency safe success improves to 0.542 versus 0.500 for fixed posterior, Family B cost drops to 1.333 versus 1.550 for fixed posterior, and onset-late shift improves to 0.512 versus 0.292 for source-tuned posterior. The paper must claim the activation-deadline contract, calibrated deadline accounting, and regime-specific gains rather than strict dominance over every threshold.
 
 ## Attack 8: The hostile literature list is metadata-based.
 

@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family A high-latency normal-cue slice at 0.20 s switch latency.}
+\label{tab:high-latency}
+\begin{tabular}{lcccc}
+\toprule
+Policy & Safe success & Harmful & Deadline viol. & p90 impulse \\
+\midrule
+fixed\_nominal & 0.167 & 0.833 & 0.833 & 1.755 \\
+contact\_reactive & 0.167 & 0.833 & 0.833 & 1.752 \\
+posterior\_fixed & 0.500 & 0.500 & 0.487 & 1.778 \\
+posterior\_tuned & 0.504 & 0.496 & 0.479 & 1.749 \\
+v2\_guard & 0.492 & 0.504 & 0.500 & 1.752 \\
+deadline\_threshold & 0.542 & 0.458 & 0.417 & 1.752 \\
+risk\_guard & 0.492 & 0.504 & 0.392 & 1.755 \\
+calibrated\_deadline\_guard & 0.542 & 0.458 & 0.438 & 1.731 \\
+oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.232 \\
+\bottomrule
+\end{tabular}
+\end{table}

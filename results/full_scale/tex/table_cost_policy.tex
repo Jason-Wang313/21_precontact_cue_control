@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family B cost-asymmetry aggregate. The risk guard optimizes expected first-contact cost rather than only posterior confidence.}
+\label{tab:cost-policy}
+\begin{tabular}{lcccc}
+\toprule
+Policy & Mean cost & Safe success & Harmful & Early false \\
+\midrule
+oracle\_precontact & 0.032 & 1.000 & 0.000 & 0.000 \\
+calibrated\_deadline\_guard & 1.333 & 0.849 & 0.150 & 0.039 \\
+posterior\_fixed & 1.550 & 0.832 & 0.167 & 0.020 \\
+posterior\_cost\_tuned & 1.615 & 0.819 & 0.179 & 0.077 \\
+v2\_guard & 1.813 & 0.802 & 0.198 & 0.020 \\
+risk\_guard & 2.216 & 0.745 & 0.250 & 0.190 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,15 +1,15 @@
 # Submission Attack Log
 
-Updated: 2026-06-13 02:32:07 +01:00
+Updated: 2026-06-14
 
-## V2 Attack Rounds
+## V3 Attack Rounds
 
-1. **"A tuned posterior-only baseline could match the guard."** Added a posterior confidence/margin threshold sweep over the same cue stream.
-2. **"The guard may be overclaiming algorithmic superiority."** The sweep confirms the risk: tuned posterior-only exceeds the guard in normal, weak, and late cue conditions.
-3. **"Safe success may be a metric trick."** The paper now states the contribution as activation-deadline accounting and contact-reactive failure exposure, not universal dominance.
-4. **"Real learned policies may discover the threshold."** Still unresolved and listed as future work.
-5. **"Synthetic cues are too convenient."** Decision remains workshop-only / strong-revise.
+1. Tuned posterior threshold could match the guard. Kept fixed/tuned/calibrated posterior baselines and narrowed the claim.
+2. Single v2 guard was too weak. Added strategy-posterior deadline guard and calibrated deadline guard.
+3. Risk-aware extension could over-switch. It did; the paper reports the failure.
+4. Synthetic cue model could be too convenient. Added high noise, weak cues, late cues, onset shift, prototype drift, random cues, and evidence-at-contact controls.
+5. Safe success could hide metric gaming. Reported harmful contact, deadline violation, early false switch, expected cost, and negative controls.
 
 ## Terminal Assessment
 
-Recoverable overclaim risk was addressed by adding a stronger baseline and narrowing the claim. Remaining weaknesses require real robot data or learned/tuned policy comparisons.
+The paper is credible as a synthetic activation-deadline mechanism and benchmark. Remaining attacks require hardware and learned-policy evidence, not more text.

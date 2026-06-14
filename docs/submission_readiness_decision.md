@@ -1,23 +1,25 @@
 # Submission Readiness Decision
 
-Decision: workshop-only / strong-revise.
+Decision: final synthetic mechanism paper; hardware-claim readiness remains strong-revise.
 
-## Why Not Submit-Ready
+## Why It Is Now Submission-Ready For The Synthetic Scope
 
-- Evidence is synthetic.
-- No real gripper, proximity sensor, or measured switch-latency experiment is included.
-- V2 shows tuned posterior-only thresholds outperform the proposed guard on this benchmark.
-- The formal result is a useful timing lemma, not a full control theorem.
+- 26-page final manuscript with formal timing claim, method, full-scale experiments, negative controls, ablations, appendices, and audit notes.
+- Full-scale suite has 191,384 rows over 26,000 cases.
+- Strong baselines are included and not hidden.
+- The risk guard failure is reported.
+- Final PDF is verified in Downloads with hash recorded.
 
-## Why Not Kill
+## Why It Is Not A Real-Robot Claim
 
-- The activation-deadline condition is physically real and easy to miss.
-- Contact-reactive switching fails badly when latency is nonzero.
-- The v2 sweep makes the baseline boundary honest instead of hiding it.
+- No physical gripper experiment.
+- No measured strategy-switch latency.
+- No calibrated physical proximity/tactile sensor.
+- No learned policy baseline.
 
-## Required Next Work For Main-Track Strength
+## Required Next Work For Hardware-Strength Submission
 
-- Run on a real gripper with measured strategy-switch latency.
-- Compare against learned precontact policies and tuned classifier thresholds.
-- Calibrate the cue model to a specific sensor.
-- Show cases where final success hides harmful first-contact impulse on real objects.
+- Measure switch latency on a real gripper.
+- Measure cue onset and first-contact impulse.
+- Compare against learned precontact policies and tuned posterior thresholds.
+- Validate that final success hides first-contact harm on real objects.

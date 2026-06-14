@@ -1,0 +1,139 @@
+{
+  "elapsed_seconds": 1020.5693506000098,
+  "families": [
+    {
+      "cases": 10080,
+      "family": "family_a",
+      "rows": 90720,
+      "rows_path": "results\\full_scale\\family_a_rows.csv",
+      "seconds": 411.8976766000269,
+      "summaries": {
+        "summary_by_condition_policy": "results\\full_scale\\family_a_summary_by_condition_policy.csv",
+        "summary_by_latency": "results\\full_scale\\family_a_summary_by_latency.csv",
+        "summary_by_mode": "results\\full_scale\\family_a_summary_by_mode.csv"
+      },
+      "tuned_thresholds": {
+        "early_cue": {
+          "conf": 0.84,
+          "margin": 0.04,
+          "score": 0.8279166666666667
+        },
+        "high_noise": {
+          "conf": 0.74,
+          "margin": 0.04,
+          "score": 0.5816666666666667
+        },
+        "late_cue": {
+          "conf": 0.74,
+          "margin": 0.04,
+          "score": 0.30333333333333334
+        },
+        "normal": {
+          "conf": 0.84,
+          "margin": 0.04,
+          "score": 0.715
+        },
+        "uninformative_until_contact": {
+          "conf": 0.54,
+          "margin": 0.04,
+          "score": 0.27166666666666667
+        },
+        "weak_cue": {
+          "conf": 0.54,
+          "margin": 0.34,
+          "score": 0.3456944444444444
+        }
+      }
+    },
+    {
+      "cases": 5400,
+      "family": "family_b",
+      "rows": 32400,
+      "rows_path": "results\\full_scale\\family_b_rows.csv",
+      "seconds": 141.73846409999533,
+      "summaries": {
+        "summary_by_cost": "results\\full_scale\\family_b_summary_by_cost.csv",
+        "summary_by_policy": "results\\full_scale\\family_b_summary_by_policy.csv"
+      }
+    },
+    {
+      "cases": 4608,
+      "family": "family_c",
+      "rows": 23040,
+      "rows_path": "results\\full_scale\\family_c_rows.csv",
+      "seconds": 95.78961089998484,
+      "summaries": {
+        "summary_by_shift": "results\\full_scale\\family_c_summary_by_shift.csv",
+        "summary_by_shift_latency": "results\\full_scale\\family_c_summary_by_shift_latency.csv"
+      }
+    },
+    {
+      "cases": 2072,
+      "family": "family_d",
+      "rows": 14504,
+      "rows_path": "results\\full_scale\\family_d_rows.csv",
+      "seconds": 80.42127990000881,
+      "summaries": {
+        "summary_by_scenario": "results\\full_scale\\family_d_summary_by_scenario.csv",
+        "summary_by_scenario_mode": "results\\full_scale\\family_d_summary_by_scenario_mode.csv"
+      }
+    },
+    {
+      "cases": 3840,
+      "family": "family_e",
+      "rows": 30720,
+      "rows_path": "results\\full_scale\\family_e_rows.csv",
+      "seconds": 191.41042239998933,
+      "summaries": {
+        "summary_by_ablation": "results\\full_scale\\family_e_summary_by_ablation.csv",
+        "summary_by_ablation_latency": "results\\full_scale\\family_e_summary_by_ablation_latency.csv"
+      }
+    }
+  ],
+  "matplotlib": "3.10.8",
+  "numpy": "1.26.4",
+  "outputs": [
+    "results\\full_scale\\claim_evidence.csv",
+    "results\\full_scale\\family_a_rows.csv",
+    "results\\full_scale\\family_a_summary_by_condition_policy.csv",
+    "results\\full_scale\\family_a_summary_by_latency.csv",
+    "results\\full_scale\\family_a_summary_by_mode.csv",
+    "results\\full_scale\\family_a_tuned_thresholds.csv",
+    "results\\full_scale\\family_b_rows.csv",
+    "results\\full_scale\\family_b_summary_by_cost.csv",
+    "results\\full_scale\\family_b_summary_by_policy.csv",
+    "results\\full_scale\\family_c_rows.csv",
+    "results\\full_scale\\family_c_summary_by_shift.csv",
+    "results\\full_scale\\family_c_summary_by_shift_latency.csv",
+    "results\\full_scale\\family_d_rows.csv",
+    "results\\full_scale\\family_d_summary_by_scenario.csv",
+    "results\\full_scale\\family_d_summary_by_scenario_mode.csv",
+    "results\\full_scale\\family_e_rows.csv",
+    "results\\full_scale\\family_e_summary_by_ablation.csv",
+    "results\\full_scale\\family_e_summary_by_ablation_latency.csv",
+    "results\\full_scale\\metadata.json",
+    "results\\full_scale\\progress.json",
+    "results\\full_scale\\runtime_summary.csv",
+    "results\\full_scale\\tex\\table_ablations.tex",
+    "results\\full_scale\\tex\\table_claim_evidence.tex",
+    "results\\full_scale\\tex\\table_cost_policy.tex",
+    "results\\full_scale\\tex\\table_high_latency.tex",
+    "results\\full_scale\\tex\\table_main_normal.tex",
+    "results\\full_scale\\tex\\table_negative_controls.tex",
+    "results\\full_scale\\tex\\table_runtime_memory.tex",
+    "results\\full_scale\\tex\\table_shift.tex",
+    "results\\full_scale\\tuning_early_cue_safe.csv",
+    "results\\full_scale\\tuning_high_noise_safe.csv",
+    "results\\full_scale\\tuning_late_cue_safe.csv",
+    "results\\full_scale\\tuning_normal_safe.csv",
+    "results\\full_scale\\tuning_uninformative_until_contact_safe.csv",
+    "results\\full_scale\\tuning_weak_cue_safe.csv"
+  ],
+  "platform": "Windows-10-10.0.26200-SP0",
+  "plot_failures": 0,
+  "python": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+  "seed": 21021,
+  "stage": "complete",
+  "total_cases": 26000,
+  "total_rows": 191384
+}
