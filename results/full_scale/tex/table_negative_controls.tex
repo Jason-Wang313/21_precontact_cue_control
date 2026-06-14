@@ -1,0 +1,40 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family D negative controls. Benefits should disappear when latency, precontact information, or first-contact harm is removed.}
+\label{tab:negative-controls}
+\begin{tabular}{lccccc}
+\toprule
+Scenario & Policy & Safe success & Harmful & Deadline viol. & Cost \\
+\midrule
+early\_switch\_cost\_high & calibrated\_deadline\_guard & 0.780 & 0.220 & 0.173 & 1.076 \\
+early\_switch\_cost\_high & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+early\_switch\_cost\_high & posterior\_fixed & 0.804 & 0.196 & 0.241 & 0.923 \\
+early\_switch\_cost\_high & risk\_guard & 0.771 & 0.229 & 0.095 & 1.742 \\
+equal\_impulse & calibrated\_deadline\_guard & 0.818 & 0.000 & 0.143 & 0.160 \\
+equal\_impulse & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.061 \\
+equal\_impulse & posterior\_fixed & 0.839 & 0.000 & 0.232 & 0.137 \\
+equal\_impulse & risk\_guard & 0.777 & 0.000 & 0.039 & 0.302 \\
+evidence\_at\_contact & calibrated\_deadline\_guard & 0.167 & 0.833 & 0.833 & 2.778 \\
+evidence\_at\_contact & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+evidence\_at\_contact & posterior\_fixed & 0.167 & 0.833 & 0.836 & 2.778 \\
+evidence\_at\_contact & risk\_guard & 0.167 & 0.833 & 0.833 & 2.778 \\
+no\_hidden\_mode & calibrated\_deadline\_guard & 0.946 & 0.036 & 0.000 & 0.107 \\
+no\_hidden\_mode & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+no\_hidden\_mode & posterior\_fixed & 0.982 & 0.000 & 0.018 & 0.051 \\
+no\_hidden\_mode & risk\_guard & 0.643 & 0.339 & 0.000 & 0.568 \\
+random\_cue & calibrated\_deadline\_guard & 0.167 & 0.833 & 0.833 & 2.780 \\
+random\_cue & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+random\_cue & posterior\_fixed & 0.167 & 0.833 & 0.833 & 2.776 \\
+random\_cue & risk\_guard & 0.167 & 0.833 & 0.833 & 2.777 \\
+switch\_too\_slow & calibrated\_deadline\_guard & 0.289 & 0.711 & 0.699 & 2.400 \\
+switch\_too\_slow & oracle\_precontact & 0.583 & 0.417 & 0.417 & 1.434 \\
+switch\_too\_slow & posterior\_fixed & 0.232 & 0.768 & 0.783 & 2.606 \\
+switch\_too\_slow & risk\_guard & 0.277 & 0.723 & 0.655 & 2.462 \\
+zero\_latency & calibrated\_deadline\_guard & 0.961 & 0.033 & 0.000 & 0.153 \\
+zero\_latency & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+zero\_latency & posterior\_fixed & 0.970 & 0.024 & 0.000 & 0.116 \\
+zero\_latency & risk\_guard & 0.774 & 0.208 & 0.000 & 0.770 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family A normal-cue aggregate. Safe success requires the correct strategy to be active by first contact and no harmful impulse.}
+\label{tab:main-normal}
+\begin{tabular}{lccccc}
+\toprule
+Policy & Safe success & Harmful & Late & Early false & Cost \\
+\midrule
+fixed\_nominal & 0.167 & 0.833 & 0.833 & 0.000 & 2.770 \\
+contact\_reactive & 0.286 & 0.714 & 0.714 & 0.000 & 2.382 \\
+posterior\_fixed & 0.814 & 0.185 & 0.176 & 0.022 & 0.644 \\
+posterior\_tuned & 0.807 & 0.190 & 0.177 & 0.040 & 0.666 \\
+v2\_guard & 0.796 & 0.202 & 0.197 & 0.015 & 0.702 \\
+deadline\_threshold & 0.804 & 0.195 & 0.173 & 0.059 & 0.665 \\
+risk\_guard & 0.695 & 0.291 & 0.236 & 0.188 & 0.997 \\
+calibrated\_deadline\_guard & 0.814 & 0.183 & 0.169 & 0.040 & 0.629 \\
+oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.000 & 0.031 \\
+\bottomrule
+\end{tabular}
+\end{table}

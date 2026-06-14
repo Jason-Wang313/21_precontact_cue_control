@@ -1,0 +1,42 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family C distribution shift. Source-tuned posterior thresholds use the normal-cue source model; calibrated policies receive the shifted cue model.}
+\label{tab:shift}
+\begin{tabular}{lccccc}
+\toprule
+Shift & Policy & Safe success & Harmful & Deadline viol. & Cost \\
+\midrule
+mixed\_velocity\_shift & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+mixed\_velocity\_shift & calibrated\_deadline\_guard & 0.729 & 0.267 & 0.238 & 0.922 \\
+mixed\_velocity\_shift & calibrated\_posterior & 0.716 & 0.281 & 0.245 & 0.968 \\
+mixed\_velocity\_shift & source\_tuned\_posterior & 0.684 & 0.305 & 0.224 & 1.069 \\
+mixed\_velocity\_shift & risk\_guard & 0.565 & 0.415 & 0.176 & 1.458 \\
+noise\_shift & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+noise\_shift & calibrated\_deadline\_guard & 0.616 & 0.382 & 0.346 & 1.281 \\
+noise\_shift & calibrated\_posterior & 0.615 & 0.384 & 0.358 & 1.319 \\
+noise\_shift & source\_tuned\_posterior & 0.507 & 0.488 & 0.201 & 1.674 \\
+noise\_shift & risk\_guard & 0.411 & 0.582 & 0.128 & 2.005 \\
+normal & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+normal & calibrated\_deadline\_guard & 0.753 & 0.246 & 0.207 & 0.845 \\
+normal & calibrated\_posterior & 0.741 & 0.255 & 0.216 & 0.876 \\
+normal & source\_tuned\_posterior & 0.725 & 0.271 & 0.210 & 0.939 \\
+normal & risk\_guard & 0.658 & 0.336 & 0.159 & 1.140 \\
+onset\_early\_shift & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+onset\_early\_shift & calibrated\_deadline\_guard & 0.865 & 0.135 & 0.099 & 0.477 \\
+onset\_early\_shift & calibrated\_posterior & 0.841 & 0.156 & 0.108 & 0.569 \\
+onset\_early\_shift & source\_tuned\_posterior & 0.755 & 0.242 & 0.145 & 0.869 \\
+onset\_early\_shift & risk\_guard & 0.672 & 0.326 & 0.105 & 1.080 \\
+onset\_late\_shift & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+onset\_late\_shift & calibrated\_deadline\_guard & 0.512 & 0.488 & 0.462 & 1.645 \\
+onset\_late\_shift & calibrated\_posterior & 0.514 & 0.486 & 0.493 & 1.649 \\
+onset\_late\_shift & source\_tuned\_posterior & 0.292 & 0.703 & 0.473 & 2.510 \\
+onset\_late\_shift & risk\_guard & 0.275 & 0.720 & 0.292 & 2.607 \\
+prototype\_drift & oracle\_precontact & 1.000 & 0.000 & 0.000 & 0.033 \\
+prototype\_drift & calibrated\_deadline\_guard & 0.669 & 0.327 & 0.281 & 1.122 \\
+prototype\_drift & calibrated\_posterior & 0.650 & 0.348 & 0.290 & 1.207 \\
+prototype\_drift & source\_tuned\_posterior & 0.609 & 0.385 & 0.211 & 1.349 \\
+prototype\_drift & risk\_guard & 0.529 & 0.466 & 0.143 & 1.605 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,29 +1,42 @@
 # Final Audit
 
-1. Chosen thesis: Precontact cues should be used as latency-aware hybrid-control guards for switching grasp strategy before first contact, not merely as perception features.
-2. Field assumption broken: first contact is an acceptable decision boundary and post-contact tactile correction can arrive early enough to change the safe strategy.
-3. New central mechanism: a precontact guard contract whose threshold depends on cue posterior, posterior margin, remaining distance, approach speed, switch latency, and asymmetric early/late switching costs.
-4. Genuine novelty: pre-touch/proximity sensing, tactile feedback, and contact control are not claimed as new; the novelty boundary is placing the discrete strategy guard before first contact and making physical activation deadline part of the decision rule.
-5. Closest hostile prior work: the 100-paper hostile set in `docs/hostile_prior_work.md`, especially pre-touch/proximity sensing, tactile reactive grasping, and hybrid contact-control papers that already cover the ingredients but not the latency-aware guard contract.
-6. Literature coverage: 1000 matrix entries, 300 serious-skim entries, 230 deep-read entries, 100 hostile entries; target 1000 met: True.
-7. Proof/formal-claim status: one activation-deadline proposition is proved under constant approach speed and fixed switch latency; it is a timing lemma, not a general optimal-control theorem.
-8. Strongest evidence: runnable simulation with 27000 main episodes plus a v2 posterior-threshold sweep. Normal-cue guard safe success 0.96167 versus contact-reactive 0.405 and fixed posterior-only 0.96167; harmful contact guard 0.03833 versus contact-reactive 0.595. V2 tuned posterior-only reaches 0.977 normal, 0.758 weak cue, and 0.438 late cue safe success, exceeding the guard and narrowing the claim.
-9. Biggest weaknesses: no real robot experiment, synthetic cue/contact model, metadata/abstract-based literature extraction for many papers, a deliberately simple formal result, and v2 evidence that tuned posterior-only thresholds can outperform the proposed guard on this benchmark.
-10. Paper-readiness judgment: workshop-only / strong-revise. The timing mechanism is crisp and runnable, but real hardware evidence and stronger learned/tuned precontact baselines are needed before a strong ICLR submission.
-11. Exact Downloads PDF path: C:\Users\wangz\Downloads\21.pdf; exists: True; build stage: done; template status: already_present.
-12. GitHub URL: https://github.com/Jason-Wang313/21_precontact_cue_control.
-13. Desktop copy status: obsolete orchestrator copy should remain absent under v2 hardening; current Desktop path exists: False.
+## Decision
 
-## Build Notes
+Paper21 is a final v3 synthetic mechanism paper under the strict batch standard. It is 26 pages and supported by a full-scale experiment suite, but it remains a synthetic paper rather than a real-robot systems claim.
 
-- V2 PDF build complete: `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`.
-- Canonical PDF copied to `C:/Users/wangz/Downloads/21.pdf`; final size: 208,458 bytes.
-- PDF text verified for the visible v2 marker, posterior-threshold sweep, and tuned-posterior result.
-- Local generated `paper/main.pdf` removed after copying; Desktop copies absent.
-- ICLR template source status: already_present.
+## Final PDF
 
-## Orchestrator Desktop Copy
+- Path: `C:\Users\wangz\Downloads\21.pdf`
+- Pages: 26
+- Bytes: 364,070
+- SHA256: `A3CE9BC0033548239FD9C10F2B2C8835D2BAA567F1B7DB887665F4B32CDAE27A`
+- Local `paper/main.pdf`: removed
 
-Checked: 2026-06-11 17:17:06 +01:00
-Downloads PDF: C:/Users/wangz/Downloads/21.pdf
-Result: copy script exit 0 log C:\Users\wangz\robotics_60_paper_batch\logs\desktop_copy_21_20260611_171659.log
+## Full-Scale Evidence
+
+- Stage: complete
+- Seed: 21021
+- Rows: 191,384
+- Cases: 26,000
+- Plot failures: 0
+- Results directory: `results/full_scale/`
+- Figures directory: `figures/full_scale/`
+
+## Strongest Results
+
+- Normal calibrated deadline guard safe success: 0.814.
+- Normal contact-reactive safe success: 0.286.
+- High-latency calibrated deadline guard safe success: 0.542 versus fixed posterior 0.500.
+- Cost-asymmetry mean cost: calibrated deadline guard 1.333 versus fixed posterior 1.550.
+- Onset-late shift safe success: calibrated deadline guard 0.512 versus source-tuned posterior 0.292.
+
+## Hard Boundaries
+
+- No real robot experiment.
+- Synthetic cue and impulse model.
+- Tuned posterior remains a strong baseline and wins in some regimes.
+- Risk guard extension fails and is reported as a negative result.
+
+## Readiness Judgment
+
+Submission-ready as a full synthetic mechanism/diagnostic paper. Not sufficient as a main-track real-robot manipulation claim without hardware validation, measured switch latency, calibrated sensor data, and learned baselines.

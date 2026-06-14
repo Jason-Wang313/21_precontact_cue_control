@@ -1,33 +1,16 @@
-﻿{
-    "stage":  "done",
-    "downloads_pdf":  "C:\\Users\\wangz\\Downloads\\21.pdf",
-    "steps":  [
-                  {
-                      "name":  "pdflatex1",
-                      "exit_code":  0,
-                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex1.out.txt"
-                  },
-                  {
-                      "name":  "bibtex",
-                      "exit_code":  0,
-                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\bibtex.out.txt"
-                  },
-                  {
-                      "name":  "pdflatex2",
-                      "exit_code":  0,
-                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex2.out.txt"
-                  },
-                  {
-                      "name":  "pdflatex3",
-                      "exit_code":  0,
-                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex3.out.txt"
-                  },
-                  {
-                      "name":  "pdflatex4",
-                      "exit_code":  0,
-                      "output":  "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex4.out.txt"
-                  }
-              ],
-    "copied_to_downloads":  true,
-    "removed_intermediate_pdf":  true
+{
+  "stage": "done",
+  "downloads_pdf": "C:\\Users\\wangz\\Downloads\\21.pdf",
+  "copied_to_downloads": true,
+  "removed_intermediate_pdf": true,
+  "v3_manual_export": true,
+  "v3_final_pages": 26,
+  "v3_final_bytes": 364070,
+  "v3_final_sha256": "A3CE9BC0033548239FD9C10F2B2C8835D2BAA567F1B7DB887665F4B32CDAE27A",
+  "build_steps": [
+    "pdflatex -interaction=nonstopmode -halt-on-error main.tex",
+    "bibtex main",
+    "pdflatex -interaction=nonstopmode -halt-on-error main.tex",
+    "pdflatex -interaction=nonstopmode -halt-on-error main.tex"
+  ]
 }

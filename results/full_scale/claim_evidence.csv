@@ -1,0 +1,8 @@
+claim,evidence,status
+Contact-reactive switching is too late under nonzero latency,Normal contact-reactive safe success 0.286 versus calibrated deadline guard 0.814.,supported synthetic
+A tuned posterior baseline is strong and must be reported,Normal tuned posterior safe success 0.807; v2 guard 0.796.,reported boundary
+Calibrated deadline guards improve cost-sensitive operation,Family B calibrated deadline guard mean cost 1.333 versus fixed posterior 1.550; risk guard is worse at 2.216.,supported synthetic
+Calibration/shift matters separately from deadline feasibility,Onset-late shift source posterior safe success 0.292; calibrated deadline guard 0.512.,supported synthetic
+Benefit disappears when precontact evidence is absent,Uninformative-until-contact calibrated deadline guard safe success 0.167.,negative control
+Naive risk extension underperforms,Normal risk guard cost 2.079; no-deadline ablation 2.040; calibrated deadline guard 1.716.,negative method result
+Zero latency removes the physical lateness mechanism,Zero-latency calibrated deadline guard deadline violation 0.000.,sanity check

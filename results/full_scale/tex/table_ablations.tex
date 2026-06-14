@@ -1,0 +1,44 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Family E ablations of the deadline-aware guard family.}
+\label{tab:ablations}
+\begin{tabular}{lccccc}
+\toprule
+Condition & Policy & Safe success & Harmful & Late & Cost \\
+\midrule
+high\_noise & distance\_only & 0.561 & 0.436 & 0.322 & 2.403 \\
+high\_noise & deadline\_threshold & 0.576 & 0.422 & 0.411 & 2.531 \\
+high\_noise & risk\_no\_deadline & 0.557 & 0.438 & 0.398 & 2.596 \\
+high\_noise & risk\_no\_margin & 0.545 & 0.448 & 0.409 & 2.659 \\
+high\_noise & calibrated\_deadline\_guard & 0.555 & 0.442 & 0.435 & 2.662 \\
+high\_noise & risk\_no\_cost & 0.546 & 0.449 & 0.410 & 2.663 \\
+high\_noise & risk\_guard & 0.546 & 0.450 & 0.410 & 2.664 \\
+high\_noise & posterior\_fixed & 0.500 & 0.500 & 0.497 & 3.058 \\
+late\_cue & distance\_only & 0.341 & 0.644 & 0.494 & 3.436 \\
+late\_cue & risk\_no\_deadline & 0.301 & 0.698 & 0.690 & 4.206 \\
+late\_cue & risk\_guard & 0.287 & 0.710 & 0.704 & 4.295 \\
+late\_cue & risk\_no\_cost & 0.287 & 0.713 & 0.704 & 4.297 \\
+late\_cue & risk\_no\_margin & 0.285 & 0.710 & 0.704 & 4.298 \\
+late\_cue & deadline\_threshold & 0.263 & 0.738 & 0.738 & 4.477 \\
+late\_cue & calibrated\_deadline\_guard & 0.259 & 0.741 & 0.741 & 4.494 \\
+late\_cue & posterior\_fixed & 0.235 & 0.765 & 0.765 & 4.656 \\
+normal & calibrated\_deadline\_guard & 0.716 & 0.283 & 0.277 & 1.716 \\
+normal & distance\_only & 0.685 & 0.314 & 0.232 & 1.730 \\
+normal & deadline\_threshold & 0.704 & 0.295 & 0.282 & 1.765 \\
+normal & posterior\_fixed & 0.697 & 0.303 & 0.298 & 1.856 \\
+normal & risk\_no\_deadline & 0.632 & 0.360 & 0.307 & 2.040 \\
+normal & risk\_no\_cost & 0.626 & 0.366 & 0.314 & 2.075 \\
+normal & risk\_guard & 0.626 & 0.370 & 0.314 & 2.079 \\
+normal & risk\_no\_margin & 0.619 & 0.375 & 0.319 & 2.114 \\
+weak\_cue & distance\_only & 0.378 & 0.615 & 0.468 & 3.408 \\
+weak\_cue & risk\_no\_deadline & 0.378 & 0.615 & 0.592 & 3.666 \\
+weak\_cue & risk\_no\_margin & 0.371 & 0.623 & 0.598 & 3.700 \\
+weak\_cue & risk\_no\_cost & 0.371 & 0.622 & 0.599 & 3.703 \\
+weak\_cue & risk\_guard & 0.371 & 0.627 & 0.599 & 3.707 \\
+weak\_cue & deadline\_threshold & 0.333 & 0.667 & 0.655 & 3.978 \\
+weak\_cue & calibrated\_deadline\_guard & 0.321 & 0.678 & 0.671 & 4.050 \\
+weak\_cue & posterior\_fixed & 0.252 & 0.747 & 0.744 & 4.541 \\
+\bottomrule
+\end{tabular}
+\end{table}

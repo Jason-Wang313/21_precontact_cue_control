@@ -1,83 +1,46 @@
 # Child Status
 
-- Stage: v2 submission hardening complete
-- Last update: 2026-06-13
-- Current focus: v2 posterior-threshold baseline added; canonical PDF rebuilt and copied to Downloads; local build PDF removed
-- Commands run:
-  - wrote `plan.md`
-  - wrote `child_status.md`
-  - `Get-ChildItem -Force`
-  - `git status --short`
-  - `Get-Command python,pdflatex,bibtex,git,gh`
-  - `Get-ChildItem -Force docs`
-  - `Get-Content .gitignore`
-  - wrote `scripts/collect_literature.py`
-  - wrote `scripts/analyze_literature.py`
-  - wrote `scripts/run_experiments.py`
-  - wrote `scripts/write_paper.py`
-  - wrote `scripts/build_paper.ps1`
-  - wrote `scripts/write_final_audit.py`
-  - wrote `requirements.txt`
-  - `python -m py_compile scripts\collect_literature.py scripts\analyze_literature.py scripts\run_experiments.py scripts\write_paper.py scripts\write_final_audit.py`
-  - `python scripts\collect_literature.py`
-  - `python scripts\analyze_literature.py`
-  - `python scripts\run_experiments.py` (first run)
-  - patched `scripts\run_experiments.py` to make posterior-only an accuracy-only fixed-threshold baseline and require guard confirmation
-  - `python -m py_compile scripts\run_experiments.py`
-  - `python scripts\run_experiments.py` (final run)
-  - patched `scripts\write_paper.py` and `scripts\analyze_literature.py` to honestly report posterior-only competitiveness
-  - `python scripts\analyze_literature.py` (refresh)
-  - `python scripts\write_paper.py`
-  - patched `scripts\write_paper.py` to de-duplicate citation keys
-  - `python scripts\write_paper.py` (refresh)
-  - `powershell -ExecutionPolicy Bypass -File scripts\build_paper.ps1`
-  - extra `pdflatex -interaction=nonstopmode -halt-on-error main.tex` pass after label warning
-  - `gh auth status`
-  - `git remote -v`
-  - `git status --short`
-  - `git add -A`
-  - `git commit -m "Initial precontact cue control paper artifact"`
-  - `gh repo view Jason-Wang313/21_precontact_cue_control`
-  - `gh repo create 21_precontact_cue_control --public --source=. --remote=origin --push`
-  - `python scripts\write_final_audit.py`
-  - patched `scripts\write_final_audit.py` to read PowerShell JSON with `utf-8-sig`
-  - `python scripts\write_final_audit.py` (refresh)
-  - `git add child_status.md scripts\write_final_audit.py docs\final_audit.md`
-  - `git commit -m "Add final audit"`
-  - `git push`
-  - final sanity checks: `git status --short`, `git log -1 --oneline`, `git remote -v`, Downloads PDF existence, final audit existence, Desktop PDF existence
-- Findings:
-  - fresh git repo with only `.gitignore`, `plan.md`, `child_status.md`, and empty `docs/`
-  - Python, pdflatex, bibtex, git, and GitHub CLI are available
-  - literature collector returned 1620 unique records; 1000-paper target met
-  - analysis wrote 1000 matrix rows, 300 serious-skim rows, 230 deep-read rows, 100 hostile rows, and 24 hidden assumptions
-  - final experiment run wrote 27000 episodes; normal-cue guard safe success 0.96167, contact-reactive 0.405, posterior-only 0.96167
-  - ICLR 2026 template downloaded from official Master-Template zip; paper files generated with 46 references
-  - direct LaTeX build succeeded; `C:\Users\wangz\Downloads\21.pdf` exists; intermediate `paper\main.pdf` removed
-  - public GitHub repo created and initial commit pushed: `https://github.com/Jason-Wang313/21_precontact_cue_control`
-  - final audit written at `docs\final_audit.md`; Desktop copy status is `pending orchestrator copy`
-  - final PDF remains at `C:\Users\wangz\Downloads\21.pdf`
-  - latest pushed commit before this status-only update: `3145ee4 Add final audit`
-  - working tree was clean before this final status update
-  - v2 hardening adds `results/posterior_threshold_sweep.csv` and `results/posterior_threshold_sweep_table.tex`
-  - v2 tuned posterior-only safe success is 0.977 normal, 0.758 weak cue, and 0.438 late cue, exceeding the guard in this synthetic benchmark
-  - v2 paper claim is narrowed to the activation-deadline contract and safety accounting, not universal dominance over tuned posterior thresholds
-  - rebuilt `C:\Users\wangz\Downloads\21.pdf` size is 208,458 bytes
-  - local generated `paper\main.pdf` was removed after the Downloads copy
-  - Desktop copies checked absent during v2 hardening
-- Failures:
-  - none
-- Recovery steps:
-  - none
-- Failures:
-  - initial `write_paper.py` f-string brace syntax errors; fixed by replacing the LaTeX f-string with a raw template plus placeholders
-  - first experiment run made posterior-only stronger than the guard; recovered by clarifying the baseline and rewriting claims to avoid unsupported dominance
-- Recovery steps:
-  - re-ran `python -m py_compile`; exit 0
-  - ran an extra pdflatex pass to clear a label rerun warning and updated `paper\build_status.json`
-- Next:
-  - no child-side work remains
+- Stage: v3 final full-scale hardening complete
+- Last update: 2026-06-14
+- Current focus: final PDF exported to Downloads; local `paper/main.pdf` removed; docs updated for v3 evidence
 
-Exit code: 0
-End time: 2026-06-11 17:16:59 +01:00
-PDF exists: True
+## Commands and Work Completed
+
+- Wrote `docs/full_scale_execution_plan.md` before substantive v3 edits.
+- Added `experiments/full_scale_precontact.py`.
+- Ran `python experiments\full_scale_precontact.py`.
+- Final full-scale run: 191,384 rows, 26,000 cases, seed 21021, plot failures 0.
+- Rewrote `paper/main.tex` into a 26-page v3 manuscript with formal setup, full-scale experiments, negative controls, ablations, appendices, and audit notes.
+- Built with `pdflatex`, `bibtex`, `pdflatex`, `pdflatex`.
+- Verified local PDF text markers for `v3 final full-scale`, `191,384`, `26,000`, `0.814`, `1.333`, and `0.512`.
+- Exported final PDF to `C:\Users\wangz\Downloads\21.pdf`.
+- Removed local `paper/main.pdf`.
+
+## Final PDF
+
+- Path: `C:\Users\wangz\Downloads\21.pdf`
+- Pages: 26
+- Bytes: 364,070
+- SHA256: `A3CE9BC0033548239FD9C10F2B2C8835D2BAA567F1B7DB887665F4B32CDAE27A`
+
+## Headline Evidence
+
+- Normal contact-reactive safe success: 0.286.
+- Normal fixed posterior safe success: 0.814.
+- Normal calibrated deadline guard safe success: 0.814 with lower expected cost than fixed posterior.
+- High-latency calibrated deadline guard safe success: 0.542 versus fixed posterior 0.500.
+- Cost-asymmetry calibrated deadline guard mean cost: 1.333 versus fixed posterior 1.550.
+- Onset-late shift calibrated deadline guard safe success: 0.512 versus source-tuned posterior 0.292.
+- Risk guard underperforms and is reported as a negative method result.
+
+## Remaining Weaknesses
+
+- No real robot experiment.
+- Synthetic cue/contact/impulse model.
+- Tuned posterior thresholds remain strong and win in weak/early cue regimes.
+- Learned policies are not evaluated.
+
+## Next
+
+- Commit and push v3.
+- Verify clean tree and `HEAD == @{u}` before moving to Paper22.
