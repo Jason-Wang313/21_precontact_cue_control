@@ -9,6 +9,7 @@ Decision: final synthetic mechanism paper; hardware-claim readiness remains stro
 - Strong baselines are included and not hidden.
 - The risk guard failure is reported.
 - Final PDF is verified in Downloads with hash recorded.
+- The final PDF now matches the VLA-v4 role model's boxed-link convention: green citation/URL boxes, red internal-reference boxes, no cyan boxes, and one-point borders.
 
 ## Why It Is Not A Real-Robot Claim
 

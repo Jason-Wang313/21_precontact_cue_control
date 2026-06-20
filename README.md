@@ -10,10 +10,11 @@ Precontact cues should act as latency-aware controller guards for switching gras
 
 - Final PDF: `C:\Users\wangz\Downloads\21.pdf`
 - Page count: 26
-- File size: 364,070 bytes
-- SHA256: `A3CE9BC0033548239FD9C10F2B2C8835D2BAA567F1B7DB887665F4B32CDAE27A`
+- File size: 428,709 bytes
+- SHA256: `C282912BC81046BD1B51C69B60DCEAF3B6798E89CD43F59638BE0FD76CF51F8C`
 - Local build PDF: `paper/main.pdf` removed after export
 - Full-scale suite: 191,384 policy rows over 26,000 cases, seed 21021, zero plot failures
+- VLA-style boxed-link verification: 124 annotations on pages `[(2, 41), (3, 28), (6, 2), (7, 1), (10, 1), (12, 4), (13, 21), (14, 19), (15, 6), (20, 1)]`; colors green = 118, red = 6, cyan = 0; all borders `(0, 0, 1)`.
 
 ## Reproduce
 
