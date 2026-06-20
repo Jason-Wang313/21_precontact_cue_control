@@ -254,3 +254,17 @@ All docs must state the true final evidence, including negative or boundary resu
 - SHA256 hash, bytes, and page count for `Downloads\21.pdf` are recorded in docs.
 - Repo is committed and pushed.
 - `git status --short --branch` is clean and `HEAD == @{u}` before moving to Paper22.
+
+## 2026-06-20 VLA-Style Link Hardening Addendum
+
+After the v3 scientific content was finalized, the canonical PDF was rebuilt
+with explicit VLA-style `hyperref` boxed-link settings. This addendum does not
+change experiments, claims, figures, tables, bibliography content, or page
+count. It only hardens final PDF presentation:
+
+- citation links use green one-point boxes;
+- URL links use green one-point boxes;
+- internal section/table/figure links use red one-point boxes;
+- no cyan URL boxes appear;
+- affected link pages 2, 3, 6, 7, 10, 12, 13, 14, 15, and 20 were rendered and
+  visually checked against the visible VLA-v4 role model.

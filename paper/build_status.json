@@ -4,13 +4,57 @@
   "copied_to_downloads": true,
   "removed_intermediate_pdf": true,
   "v3_manual_export": true,
+  "vla_link_hardening": true,
   "v3_final_pages": 26,
-  "v3_final_bytes": 364070,
-  "v3_final_sha256": "A3CE9BC0033548239FD9C10F2B2C8835D2BAA567F1B7DB887665F4B32CDAE27A",
+  "v3_final_bytes": 428709,
+  "v3_final_sha256": "C282912BC81046BD1B51C69B60DCEAF3B6798E89CD43F59638BE0FD76CF51F8C",
+  "vla_link_annotations": 124,
+  "vla_link_pages": [
+    [2, 41],
+    [3, 28],
+    [6, 2],
+    [7, 1],
+    [10, 1],
+    [12, 4],
+    [13, 21],
+    [14, 19],
+    [15, 6],
+    [20, 1]
+  ],
+  "vla_annotation_colors": {
+    "green": 118,
+    "red": 6,
+    "cyan": 0
+  },
+  "vla_border_widths": {
+    "0 0 1": 124
+  },
   "build_steps": [
     "pdflatex -interaction=nonstopmode -halt-on-error main.tex",
     "bibtex main",
     "pdflatex -interaction=nonstopmode -halt-on-error main.tex",
     "pdflatex -interaction=nonstopmode -halt-on-error main.tex"
+  ],
+  "steps": [
+    {
+      "name": "pdflatex1",
+      "exit_code": 0,
+      "output": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex1.out.txt"
+    },
+    {
+      "name": "bibtex",
+      "exit_code": 0,
+      "output": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\bibtex.out.txt"
+    },
+    {
+      "name": "pdflatex2",
+      "exit_code": 0,
+      "output": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex2.out.txt"
+    },
+    {
+      "name": "pdflatex3",
+      "exit_code": 0,
+      "output": "C:\\Users\\wangz\\robotics_60_paper_batch\\21_precontact_cue_control\\paper\\pdflatex3.out.txt"
+    }
   ]
 }

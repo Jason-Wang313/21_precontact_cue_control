@@ -1,6 +1,6 @@
 # Submission Attack Log
 
-Updated: 2026-06-14
+Updated: 2026-06-20
 
 ## V3 Attack Rounds
 
@@ -9,6 +9,7 @@ Updated: 2026-06-14
 3. Risk-aware extension could over-switch. It did; the paper reports the failure.
 4. Synthetic cue model could be too convenient. Added high noise, weak cues, late cues, onset shift, prototype drift, random cues, and evidence-at-contact controls.
 5. Safe success could hide metric gaming. Reported harmful contact, deadline violation, early false switch, expected cost, and negative controls.
+6. The PDF did not visually match the VLA-v4 boxed-link role model. Added explicit `hyperref` border colors, rebuilt the final PDF, and visually checked all affected link pages.
 
 ## Terminal Assessment
 
